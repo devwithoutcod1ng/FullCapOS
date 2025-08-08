@@ -19,13 +19,13 @@ Full Cap OS is a browser-based operating system that was developed to use device
 ## 🛠️ Installation
 
 ### Option 1: Direct opening (easy)
-1. **Download files** (https://github.com/devwithoutcod1ng/FullCapOS/releases/)
+1. **[Download Files](https://github.com/devwithoutcod1ng/FullCapOS/archive/refs/heads/main.zip)** 
 2. **Extract ZIP**
 3. **Open os.html**
 
 Or
 
-1. **Open Website** (https://devwithoutcod1ng.github.io/FullCapOS/)
+1. **[Open Website](https://devwithoutcod1ng.github.io/FullCapOS/)** 
 2. **Press Start FullCapOS**
 
 - ✅ Camera is working
@@ -33,24 +33,22 @@ Or
 - ⚠️ No camera list available
 
 ### Option 2: Local server (Full Functionality)
-1. **Download files**
+1. **[Download Files](https://github.com/devwithoutcod1ng/FullCapOS/archive/refs/heads/main.zip)** 
 2. **Extract ZIP**
 3. **Start local server**
-   
    **Python:**
- ```bash
- python -m http.server 8000
- ```
-   
+   ```bash
+   python -m http.server 8000
+   ```
    **Node.js:**
- ```bash
- npx http-server -p 8000
- ```
-
+   ```bash
+   npx http-server -p 8000
+   ```
 4. **Open in browser**
- ```
- http://localhost:8000
- ```
+   ```
+   http://localhost:8000
+   ```
+
 - ✅ Full functionality of the camera list
 - ✅ All functions work perfectly
 
@@ -63,4 +61,4 @@ Or
 
 ---
 
-**FullCapOS** 
+**FullCapOS**
