@@ -50,7 +50,13 @@ class FullCapOS {
         
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && document.fullscreenElement) {
+            // Check for fullscreen state (cross-browser)
+            const isFullscreen = document.fullscreenElement || 
+                                document.webkitFullscreenElement || 
+                                document.mozFullScreenElement || 
+                                document.msFullscreenElement;
+            
+            if (e.key === 'Escape' && isFullscreen) {
                 this.exitFullscreen();
             }
             
@@ -80,6 +86,9 @@ class FullCapOS {
     showOverlay() {
         this.overlay.classList.add('visible');
         
+        // Show mouse cursor when overlay is visible
+        document.body.style.cursor = 'default';
+        
         // Hide overlay after 3 seconds
         clearTimeout(this.mouseTimeout);
         this.mouseTimeout = setTimeout(() => {
@@ -89,6 +98,9 @@ class FullCapOS {
     
     hideOverlay() {
         this.overlay.classList.remove('visible');
+        
+        // Hide mouse cursor when overlay is not visible
+        document.body.style.cursor = 'none';
     }
     
     handleKeyboardNavigation(e) {
@@ -498,8 +510,13 @@ class FullCapOS {
     }
     
     toggleFullscreen() {
-        // Check current fullscreen state and toggle accordingly
-        if (document.fullscreenElement) {
+        // Check current fullscreen state and toggle accordingly (cross-browser)
+        const isFullscreen = document.fullscreenElement || 
+                            document.webkitFullscreenElement || 
+                            document.mozFullScreenElement || 
+                            document.msFullscreenElement;
+        
+        if (isFullscreen) {
             this.exitFullscreen();
         } else {
             this.enterFullscreen();
@@ -508,14 +525,28 @@ class FullCapOS {
     
     enterFullscreen() {
         try {
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen().then(() => {
+            const docElement = document.documentElement;
+            
+            // Try different fullscreen APIs for cross-browser compatibility
+            if (docElement.requestFullscreen) {
+                docElement.requestFullscreen().then(() => {
                     this.fullscreenBtn.textContent = '⛶';
                 }).catch((err) => {
                     console.log('Fullscreen failed:', err);
-                    // Fallback: use our custom fullscreen
                     this.enterCustomFullscreen();
                 });
+            } else if (docElement.webkitRequestFullscreen) {
+                // Safari support
+                docElement.webkitRequestFullscreen();
+                this.fullscreenBtn.textContent = '⛶';
+            } else if (docElement.mozRequestFullScreen) {
+                // Firefox support
+                docElement.mozRequestFullScreen();
+                this.fullscreenBtn.textContent = '⛶';
+            } else if (docElement.msRequestFullscreen) {
+                // IE/Edge support
+                docElement.msRequestFullscreen();
+                this.fullscreenBtn.textContent = '⛶';
             } else {
                 // Fallback for browsers that don't support fullscreen API
                 this.enterCustomFullscreen();
@@ -539,8 +570,18 @@ class FullCapOS {
     
     exitFullscreen() {
         try {
-            if (document.fullscreenElement) {
+            // Try different exit fullscreen APIs for cross-browser compatibility
+            if (document.exitFullscreen) {
                 document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                // Safari support
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                // Firefox support
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                // IE/Edge support
+                document.msExitFullscreen();
             }
         } catch (error) {
             console.log('Exit fullscreen error:', error);
@@ -792,6 +833,9 @@ class FullCapOS {
             
             // Smooth fade in of capture card screen
             this.cameraScreen.style.opacity = '1';
+            
+            // Hide mouse cursor initially
+            document.body.style.cursor = 'none';
             
             // Capture card is already running, just enter fullscreen
             this.enterFullscreen();
