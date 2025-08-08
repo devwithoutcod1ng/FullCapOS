@@ -19,8 +19,9 @@ Full Cap OS is a browser-based operating system that was developed to use device
 ## 🛠️ Installation
 
 ### Option 1: Direct opening (easy)
-1. **Download files**
-2. **Open os.html**
+1. **Download files** (https://github.com/devwithoutcod1ng/FullCapOS/releases/)
+2. **Extract ZIP**
+3. **Open os.html**
 
 Or
 
@@ -33,7 +34,8 @@ Or
 
 ### Option 2: Local server (Full Functionality)
 1. **Download files**
-2. **Start local server**
+2. **Extract ZIP**
+3. **Start local server**
    
    **Python:**
  ```bash
@@ -45,7 +47,7 @@ Or
  npx http-server -p 8000
  ```
 
-3. **Open in browser**
+4. **Open in browser**
  ```
  http://localhost:8000
  ```
