@@ -25,7 +25,7 @@ Full Cap OS is a browser-based operating system that was developed to use device
 
 Or
 
-1. **Open Website** (https://devwithoutcod1ng.github.io/FullCapOS/)
+1. **[Open Website](https://devwithoutcod1ng.github.io/FullCapOS/)** 
 2. **Press Start FullCapOS**
 
 - ✅ Camera is working
@@ -33,7 +33,7 @@ Or
 - ⚠️ No camera list available
 
 ### Option 2: Local server (Full Functionality)
-1. **Download files**
+1. **[Download Files](https://github.com/devwithoutcod1ng/FullCapOS/archive/refs/heads/main.zip)** 
 2. **Extract ZIP**
 3. **Start local server**
    
