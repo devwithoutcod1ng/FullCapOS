@@ -36,21 +36,22 @@ Or
 1. **[Download Files](https://github.com/devwithoutcod1ng/FullCapOS/archive/refs/heads/main.zip)** 
 2. **Extract ZIP**
 3. **Start local server**
-   
+
    **Python:**
- ```bash
- python -m http.server 8000
- ```
-   
+   ```bash
+   python -m http.server 8000
+   ```
+
    **Node.js:**
- ```bash
- npx http-server -p 8000
- ```
+   ```bash
+   npx http-server -p 8000
+   ```
 
 4. **Open in browser**
- ```
- http://localhost:8000
- ```
+   ```
+   http://localhost:8000
+   ```
+
 - ✅ Full functionality of the camera list
 - ✅ All functions work perfectly
 
@@ -63,4 +64,4 @@ Or
 
 ---
 
-**FullCapOS** 
+**FullCapOS**
