@@ -203,12 +203,12 @@ class FullCapOS {
         const warningModal = document.createElement('div');
         warningModal.className = 'warning-modal';
         warningModal.innerHTML = `
-            <h3>⚠️ Server Required</h3>
+            <h3>⚠️ Local Server Required</h3>
             <p>To access the full camera list, you need to run this application through a local server.</p>
             <div class="warning-steps">
-                <p><strong>Option 1: Use Online Version</strong></p>
-                <a href="https://devwithoutcod1ng.github.io/FullCamOS/" target="_blank" class="online-link">https://devwithoutcod1ng.github.io/FullCamOS/</a>
-                <p><strong>Option 2: Local Server</strong></p>
+                <p><strong>Step 1: Download FullCapOS</strong></p>
+                <a href="https://devwithoutcod1ng.github.io/FullCapOS/" target="_blank" class="online-link">https://devwithoutcod1ng.github.io/FullCapOS/</a>
+                <p><strong>Step 2: Extract and Start Server</strong></p>
                 <code>python -m http.server 8000</code>
                 <p>Then open: <code>http://localhost:8000</code></p>
             </div>

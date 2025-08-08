@@ -1,7 +1,7 @@
 {
   "name": "FullCapOS - Capture Card Operating System",
   "short_name": "FullCapOS",
-  "description": "Operating system for capture cards with fullscreen video display and real-time capture card management",
+  "description": "Full Cap OS is a browser-based operating system that was developed to use devices with an integrated display, such as laptops, as a screen using a capture card.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
