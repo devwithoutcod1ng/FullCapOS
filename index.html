@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FullCapOS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="startScreen" class="start-screen">
+        <div class="start-content">
+            <h1 class="start-title">
+                <img src="logo.png" alt="FullCapOS" class="logo-image">
+            </h1>
+            <div class="loading-container">
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <div class="loading-text">Loading...</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="cameraScreen" class="camera-screen" style="display: none;">
+        <video id="video" autoplay muted playsinline></video>
+        
+        <div id="overlay" class="overlay">
+            <div class="overlay-content">
+                <div class="title">
+                    <img src="logo.png" alt="FullCapOS" class="logo-image-small">
+                </div>
+                <div class="info">
+                    <span id="resolution">-</span>
+                    <span id="fps">-</span>
+                </div>
+                <div class="controls">
+                    <div class="custom-select">
+                        <button id="cameraSelectBtn" class="select-btn">Select Input...</button>
+                        <div id="cameraDropdown" class="dropdown-menu">
+                            <div class="dropdown-item" data-value="">Select Input...</div>
+                        </div>
+                    </div>
+                    <button id="fullscreenBtn" class="btn">⛶</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,436 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Start Screen Styles */
+.start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+}
+
+.start-content {
+    text-align: center;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.start-title {
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.logo-image {
+    max-width: 400px;
+    height: auto;
+    filter: brightness(0) invert(1); /* Macht das Logo weiß */
+}
+
+.loading-container {
+    margin-top: 40px;
+}
+
+.loading-bar {
+    width: 300px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.loading-progress {
+    height: 100%;
+    background: white;
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s ease;
+    position: relative;
+}
+
+.loading-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.loading-text {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Camera Screen Styles */
+.camera-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    z-index: 1000;
+}
+
+#video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    display: block;
+    opacity: 0;
+    background: black;
+}
+
+/* Overlay Styles */
+.overlay {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 15px 20px;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.overlay.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.overlay-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    white-space: nowrap;
+}
+
+.title {
+    font-weight: 600;
+    text-align: center;
+}
+
+.logo-image-small {
+    max-width: 50px;
+    height: auto;
+    filter: brightness(0) invert(1); /* Macht das Logo weiß */
+}
+
+.info {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+}
+
+.select-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    min-width: 150px;
+    width: auto;
+    text-align: left;
+    position: relative;
+    white-space: nowrap;
+}
+
+.select-btn:focus,
+.btn:focus {
+    border-color: white;
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+.select-btn::after {
+    content: '▼';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    opacity: 0.7;
+}
+
+.select-btn.open::after {
+    content: '▲';
+}
+
+.dropdown-menu {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: auto;
+    min-width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    margin-bottom: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1001;
+    display: none;
+    white-space: nowrap;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item.selected {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dropdown-item:first-child {
+    border-radius: 0 0 8px 8px;
+}
+
+.dropdown-item:last-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.dropdown-item.info-item {
+    color: #ff6b6b;
+    font-style: italic;
+    cursor: default;
+    pointer-events: none;
+}
+
+.error-message {
+    color: white;
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: center;
+    max-width: 300px;
+}
+
+/* Warning Modal Styles */
+.warning-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 15px 20px;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    z-index: 2000;
+    max-width: 600px;
+    outline: none;
+}
+
+.warning-modal:focus {
+    border-color: white;
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+.warning-modal h3 {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.warning-modal p {
+    margin-bottom: 10px;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+.warning-steps {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px 0;
+    text-align: left;
+}
+
+.warning-steps code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    color: white;
+    display: block;
+    margin: 10px 0;
+}
+
+.online-link {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    color: #00d4ff;
+    display: block;
+    margin: 10px 0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.online-link:hover {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+    transform: translateY(-1px);
+}
+
+.warning-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 15px;
+    outline: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.warning-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
+}
+
+.btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .overlay {
+        bottom: 20px;
+        padding: 12px 15px;
+    }
+    
+    .overlay-content {
+        gap: 15px;
+    }
+    
+    .logo-image-small {
+        max-width: 50px;
+    }
+    
+    .info {
+        font-size: 12px;
+        gap: 10px;
+    }
+    
+    .select-btn,
+    .btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .overlay {
+        bottom: 15px;
+        padding: 10px 12px;
+        max-width: 90vw;
+    }
+    
+    .overlay-content {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .logo-image-small {
+        max-width: 50px;
+    }
+    
+    .info {
+        font-size: 11px;
+    }
+} 
